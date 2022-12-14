@@ -3,3 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.product-card .product-pic{
+    width: 100%;
+    height: 400px;
+}
+
+.product-card .product-pic img{
+    width: 100%;
+    height: 100%;
+}

@@ -1,16 +1,41 @@
 <?php
 require_once 'Product.php';
 class PetHouse extends Product{
-    public $brand;
-    public $size;
-    public $material;
-    public $type;
+    protected $brand;
+    protected $type;
+    protected $material;
 
-    public function __construct($_name, $_brand, $_size, $_material, $_type){
-        parent::__construct($_name);
+    public function __construct($_name, $_img, $_price, PetCategory $_pet_category){
+        parent::__construct($_name, $_img, $_price, $_pet_category);
+    }
+
+    public function setBrand($_brand)
+    {
         $this->brand = $_brand;
-        $this->size = $_size;
-        $this->material = $_material;
+    }
+
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    public function setType($_type)
+    {
         $this->type = $_type;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setMaterial($_material)
+    {
+        $this->material = $_material;
+    }
+
+    public function getMaterial()
+    {
+        return $this->material;
     }
 }
