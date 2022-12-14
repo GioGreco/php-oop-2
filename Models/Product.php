@@ -14,8 +14,11 @@ class Product{
     public $img;
     public $price;
 
-    protected $storedAt;
     public $pet_category;
+
+    protected $brand;
+
+    protected $storedAt;
     
     public function __construct(String $_name, String $_img, $_price,PetCategory $_pet_category){
         $this->name = $_name;
@@ -45,5 +48,15 @@ class Product{
 
     public function setId($_id){
         $this->id = $_id;
+    }
+
+    public function setBrand($_brand)
+    {
+        $this->brand = $_brand;
+    }
+
+    public function getBrand()
+    {
+        return $this->brand;
     }
 }

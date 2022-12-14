@@ -42,16 +42,11 @@ function getOneProduct(Int $fetchedID, $conn)
         return $product;
     }
 
-$prodotto = getOneProduct(1, $conn);
-
-$categoria = new PetCategory($prodotto->category);
-
-$prodottoClasse = new Product($prodotto->name, $prodotto->img, $prodotto->price, $categoria);
-
 // $gioco = new Toy('ffff', 'dsdsds', 'adas', $categoria);
 // var_dump($gioco);
 
 $productList = [];
+
 
 $i = 1;
 while(count($productList) < $databaseLength){
@@ -68,13 +63,20 @@ while(count($productList) < $databaseLength){
         $newProduct = new Product($stdProduct->name, $stdProduct->img, $stdProduct->price, $newCategory);
     }else if($stdProduct->kind === 'food'){
         $newProduct = new Food($stdProduct->name, $stdProduct->img, $stdProduct->price, $newCategory);
+        $newProduct->setPreparation($stdProduct->preparation);
+        $newProduct->setTaste($stdProduct->taste);
     }else if($stdProduct->kind === 'toy'){
         $newProduct = new Toy($stdProduct->name, $stdProduct->img, $stdProduct->price, $newCategory);
+        $newProduct->setGenre($stdProduct->genre);
     }else if($stdProduct->kind === 'pet-house'){
         $newProduct = new PetHouse($stdProduct->name, $stdProduct->img, $stdProduct->price, $newCategory);
+        $newProduct->setType($stdProduct->type);
+        $newProduct->setMaterial($stdProduct->material);
     }
 
     $newProduct->setId($i);
+
+    $newProduct->setBrand($stdProduct->brand);
 
     $weight = rand(0, 130);
     $newProduct->setWeight($weight, 'kg');
@@ -86,31 +88,34 @@ while(count($productList) < $databaseLength){
         echo 'Message: ' . $e->getMessage();
     }
 
-
-
     array_push($productList, $newProduct);
     $i++;
 }
-
-var_dump($productList);
-
+// var_dump($productList);
 
 ?>
 <div class="container">
 
-    <div class="row">
-        <?php
-        foreach($productList as $product) {
-        ?>
-            <div class="product-card col-4">
-                <div class="product-pic">
-                    <img src="<?php echo $product->img?>" alt="<?php echo $product->name?> pic">
+    <div class="p-4">
+        <header class="d-flex justify-content-center p-5 text-white">
+            <h1>My animal shop <i class="fa-solid fa-dog"></i></h1>
+        </header>
+        <div class="row g-5">
+            <?php
+            foreach($productList as $product) {
+            ?>
+                <div class="product-card col-4 text-center">
+                    <div class="product-pic">
+                        <img src="<?php echo $product->img?>" alt="<?php echo $product->name?> pic">
+                    </div>
+                    <h3 class="product-name"><span><?php echo $product->name?></span></h3>
+                    <div class="price fs-4"><span><?php echo $product->price?> €</span></div>
+                    <div class="brand text-uppercase text-secondary p-4"><span><?php echo $product->getBrand()?></span></div>
                 </div>
-                <div class="product-name"><span><?php echo $product->name?></span> / <span><?php echo $product->price?> €</span></div>
-            </div>
-        <?php
-        }
-        ?>
+            <?php
+            }
+            ?>
+        </div>
     </div>
 
 
