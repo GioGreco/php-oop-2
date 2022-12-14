@@ -104,13 +104,34 @@ while(count($productList) < $databaseLength){
             <?php
             foreach($productList as $product) {
             ?>
-                <div class="product-card col-4 text-center">
+                <div class="product-card col-4 text-center position-relative">
                     <div class="product-pic">
                         <img src="<?php echo $product->img?>" alt="<?php echo $product->name?> pic">
                     </div>
                     <h3 class="product-name"><span><?php echo $product->name?></span></h3>
                     <div class="price fs-4"><span><?php echo $product->price?> €</span></div>
                     <div class="brand text-uppercase text-secondary p-4"><span><?php echo $product->getBrand()?></span></div>
+                    <div class="category position-absolute">
+                        <?php
+                        if ($product->getClassName() == 'Food') {
+                        ?>
+                        <i class="fa-solid fa-drumstick-bite"></i>
+                        <?php
+                        }else if($product->getClassName() == 'Toy'){
+                        ?>
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                        <?php
+                        } else if ($product->getClassName() == 'PetHouse') {
+                        ?>
+                        <i class="fa-solid fa-house"></i>
+                        <?php
+                        } else {
+                        ?>
+                        <i class="fa-regular fa-circle-question"></i>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </div>
             <?php
             }

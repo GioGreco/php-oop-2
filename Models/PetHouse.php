@@ -9,6 +9,11 @@ class PetHouse extends Product{
         parent::__construct($_name, $_img, $_price, $_pet_category);
     }
 
+    function getClassName()
+    {
+        return get_class();
+    }
+
     public function setBrand($_brand)
     {
         $this->brand = $_brand;

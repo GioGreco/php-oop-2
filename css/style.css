@@ -27,6 +27,12 @@
     height: 100%;
 }
 
+.product-card .category{
+    top: 3%;
+    left: 3%;
+    font-size: 1.5rem;
+}
+
 body{
     background-image: linear-gradient(to right, #434343 0%, black 100%);
 }

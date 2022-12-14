@@ -26,6 +26,11 @@ class Product{
         $this->price = $_price;
         $this->pet_category = $_pet_category;
     }
+
+    function getClassName()
+    {
+        return get_class();
+    }
     public function getProductInfos(){
         $productPrice = $this->price;
         $productId = $this->id;
